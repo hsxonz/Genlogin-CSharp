@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Newtonsoft.Json;
 
-namespace Genlogin-CSharp
+namespace Genlogin_CSharp
 {
     internal class Genlogin
     {
@@ -20,7 +20,7 @@ namespace Genlogin-CSharp
         {
             this.apiKey = apiKey;
         }
-        public async Task<object> GetProfilesAsync(int limit, int offset)
+        public async Task<object> GetProfiles(int limit, int offset)
         {
             using (HttpClient httpClient = new HttpClient())
             {
@@ -38,7 +38,7 @@ namespace Genlogin-CSharp
             }
         }
 
-        public async Task<object> GetProfileByIdAsync(int id)
+        public async Task<object> GetProfile(int id)
         {
             using (HttpClient httpClient = new HttpClient())
             {
@@ -56,7 +56,7 @@ namespace Genlogin-CSharp
             }
         }
 
-        public async Task<object> GetWsEndpointAsync(int id)
+        public async Task<object> getWsEndpoint(int id)
         {
             using (HttpClient httpClient = new HttpClient())
             {
@@ -74,7 +74,7 @@ namespace Genlogin-CSharp
             }
         }
 
-        public async Task<object> startProifileAsync(int id)
+        public async Task<object> runProfile(int id)
         {
             using (HttpClient httpClient = new HttpClient())
 
@@ -92,7 +92,7 @@ namespace Genlogin-CSharp
 
         }
 
-        public async Task<object> stopProifileAsync(int id)
+        public async Task<object> stopProfile(int id)
         {
             using (HttpClient httpClient = new HttpClient())
 
@@ -110,7 +110,7 @@ namespace Genlogin-CSharp
 
         }
 
-        public async Task<object> runningProifileAsync()
+        public async Task<object> getProfilesRunning()
         {
             using (HttpClient httpClient = new HttpClient())
 
@@ -119,7 +119,6 @@ namespace Genlogin-CSharp
                     HttpResponseMessage response = await httpClient.GetAsync(LOCAL_URL + $"/running");
                     string responseBody = await response.Content.ReadAsStringAsync();
                     return responseBody;
-
                 }
                 catch (Exception ex)
                 {
