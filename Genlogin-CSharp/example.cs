@@ -19,10 +19,10 @@ namespace Genlogin_CSharp
             var gen = new Genlogin("");
             var profile = await gen.GetProfiles(1, 0);
             JObject jsonObject = JObject.Parse((string)profile);
-            int profileID = (int)jsonObject["data"]["lst_profile"][0]["id"];
+            int profileID = (int)jsonObject["data"]["items"][0]["id"];
             var profileRun = await gen.runProfile(profileID);
             JObject jsonObjectprofileRun = JObject.Parse((string)profileRun);
-            string wsEndpoint = ((string)jsonObjectprofileRun["wsEndpoint"]).Split('/')[2];
+            string wsEndpoint = ((string)jsonObjectprofileRun["data"]["wsEndpoint"]).Split('/')[2];
             var chromeDriverPath = "chromedriver.exe"; 
             var chromeOptions = new ChromeOptions();
             chromeOptions.DebuggerAddress = wsEndpoint;

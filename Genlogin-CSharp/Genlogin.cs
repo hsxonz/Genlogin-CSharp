@@ -13,8 +13,9 @@ namespace Genlogin_CSharp
 {
     internal class Genlogin
     {
+        private const string V = "";
         private string apiKey = "";
-        private readonly string LOCAL_URL = "http://localhost:55550/profiles";
+        private readonly string LOCAL_URL = "http://localhost:55550/backend/profiles";
         // Create a class constructor with a parameter
         public Genlogin(string apiKey)
         {
@@ -80,7 +81,10 @@ namespace Genlogin_CSharp
 
                 try
                 {
-                    HttpResponseMessage response = await httpClient.GetAsync(LOCAL_URL + $"/{id}/start");
+                    var collection = "users";
+                    var newUser = new { id = 1, name = "Newton" };
+                    var content = new StringContent(JsonConvert.SerializeObject(newUser), Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = await httpClient.PutAsync(LOCAL_URL + $"/{id}/start", content);
                     string responseBody = await response.Content.ReadAsStringAsync();
                     return responseBody;
 
